@@ -10,14 +10,7 @@
         .bubble-card { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); border-radius: 25px; padding: 25px; margin: 15px auto; width: 85%; max-width: 400px; border: 1px solid #d4af37; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
         input { padding: 12px; border-radius: 50px; border: 1px solid #d4af37; background: white; color: #d4af37; text-align: center; margin-bottom: 20px; width: 70%; outline: none; }
         button { padding: 15px 40px; background: linear-gradient(45deg, #d4af37, #f9e29c); color: #5d4037; border: none; border-radius: 50px; cursor: pointer; font-weight: bold; margin: 10px; transition: 0.1s; }
-        
-        /* زرار "لأ" الشقي */
-        #no-btn { 
-            background: #bbb; 
-            position: relative; 
-            z-index: 1000;
-        }
-
+        #no-btn { background: #bbb; position: relative; z-index: 1000; }
         #main-content, #final-step, #quiz-screen { display: none; flex-direction: column; align-items: center; width: 100%; }
         #lock-screen { display: flex; height: 100vh; justify-content: center; align-items: center; width: 100%; }
         img { width: 100%; border-radius: 20px; margin: 15px 0; border: 2px solid #f9e29c; }
@@ -33,7 +26,8 @@
     <div id="lock-screen">
         <div class="bubble-card">
             <h2 style="color: #d4af37;">أهلاً يا ست البنات ❤️</h2>
-            <input type="password" id="passInput" placeholder="Password (14)">
+            <p>ادخلي الرمز السري.. (لو شاطرة خمني رقم بينا 😉)</p>
+            <input type="password" id="passInput" placeholder="تفتكري الرمز إيه؟">
             <br>
             <button onclick="checkPass()">تأكيد الهوية ✨</button>
         </div>
@@ -53,7 +47,7 @@
     <div id="main-content">
         <div class="bubble-card">
             <h1>أختي وسندي ❤️</h1>
-            <p>كنت عارف إنك هتدوسي أيوة في الآخر! 😂</p>
+            <p>أيوة كدة.. اعترفي! 😂</p>
         </div>
         <div class="bubble-card"><img src="sister1.jpg"><span style="color:#d4af37">يا حتة من قلبي ❤️</span></div>
         <div class="bubble-card"><img src="sister2.jpg"><span style="color:#d4af37">سندي اللي ماليش غيره ✨</span></div>
@@ -66,33 +60,29 @@
     <div id="final-step">
         <div class="bubble-card" style="margin-top: 50px;">
             <div id="typewriter" style="line-height: 1.8; color: #5d4037; font-size: 1.2rem; font-weight: bold;"></div>
-            <div class="cyber-badge">Protected by Ammar's Firewall - Sister Edition</div>
+            <div class="cyber-badge">Protected by Ammar's Firewall</div>
         </div>
     </div>
 
     <script>
         function checkPass() {
-            if (document.getElementById('passInput').value === "14") {
+            const pass = document.getElementById('passInput').value;
+            if (pass === "14") {
                 document.getElementById('lock-screen').style.display = 'none';
                 document.getElementById('quiz-screen').style.display = 'flex';
-            } else { alert("الرمز غلط 😉"); }
+            } else { 
+                // تلميح صغير لو غلطت
+                alert("تؤ تؤ.. حاولي تاني، فكري في رقم يخصنا إحنا الاتنين 😉"); 
+            }
         }
 
-        // دالة الهروب الذكية
         function moveNo() {
             const btn = document.getElementById('no-btn');
-            const padding = 50;
-            
-            // حساب حدود الشاشة المتاحة عشان الزرار ميعلقش بره
-            const maxX = window.innerWidth - btn.clientWidth - padding;
-            const maxY = window.innerHeight - btn.clientHeight - padding;
-            
-            const randomX = Math.floor(Math.random() * maxX);
-            const randomY = Math.floor(Math.random() * maxY);
-            
+            const maxX = window.innerWidth - btn.clientWidth - 50;
+            const maxY = window.innerHeight - btn.clientHeight - 50;
             btn.style.position = 'fixed';
-            btn.style.left = randomX + 'px';
-            btn.style.top = randomY + 'px';
+            btn.style.left = Math.floor(Math.random() * maxX) + 'px';
+            btn.style.top = Math.floor(Math.random() * maxY) + 'px';
         }
 
         function checkQuiz() {
