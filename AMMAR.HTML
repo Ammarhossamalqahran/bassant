@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إلى أختي وسندي ❤️</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+        body { background: radial-gradient(circle, #fdfbfb 0%, #ebedee 100%); color: #444; font-family: 'Cairo', sans-serif; margin: 0; min-height: 100vh; overflow-x: hidden; user-select: none; }
+        .bubble-card { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); border-radius: 25px; padding: 25px; margin: 15px auto; width: 85%; max-width: 400px; border: 1px solid #d4af37; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        input { padding: 12px; border-radius: 50px; border: 1px solid #d4af37; background: white; color: #d4af37; text-align: center; margin-bottom: 20px; width: 70%; outline: none; }
+        button { padding: 15px 40px; background: linear-gradient(45deg, #d4af37, #f9e29c); color: #5d4037; border: none; border-radius: 50px; cursor: pointer; font-weight: bold; font-size: 1.1rem; }
+        #main-content, #final-step { display: none; flex-direction: column; align-items: center; width: 100%; }
+        #lock-screen { display: flex; height: 100vh; justify-content: center; align-items: center; width: 100%; }
+        img { width: 100%; border-radius: 20px; margin: 15px 0; border: 2px solid #f9e29c; }
+        .caption { color: #d4af37; font-weight: bold; margin-bottom: 20px; display: block; }
+        #typewriter { line-height: 1.8; color: #5d4037; font-size: 1.3rem; white-space: pre-line; }
+    </style>
+</head>
+<body>
+
+    <audio id="sisterMusic" loop>
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="lock-screen">
+        <div class="bubble-card">
+            <h2 style="color: #d4af37;">أهلاً يا ست البنات ❤️</h2>
+            <p>ادخلي الرمز السري </p>
+            <input type="password" id="passInput" placeholder="Password...">
+            <br>
+            <button type="button" onclick="checkUnlock()">فتح المفاجأة ✨</button>
+        </div>
+    </div>
+
+    <div id="main-content">
+        <div class="bubble-card">
+            <h1 style="color: #d4af37;">أختي الغالية ❤️</h1>
+            <p>انتي السند والضحكة اللي بتنور البيت.</p>
+        </div>
+
+        <div class="bubble-card">
+            <img src="sister1.jpg">
+            <span class="caption">يا حتة من قلبي ❤️</span>
+        </div>
+
+        <div class="bubble-card">
+            <img src="sister2.jpg">
+            <span class="caption">اللي دايماً فاهماني ✨</span>
+        </div>
+
+        <div class="bubble-card">
+            <img src="sister3.jpg">
+            <span class="caption">ربنا ما يحجمني من وجودك أبداً ❤️</span>
+        </div>
+
+        <div class="bubble-card">
+            <button onclick="showFinal()">كلام ليكي لوحدك ❤️</button>
+        </div>
+    </div>
+
+    <div id="final-step">
+        <div class="bubble-card" style="margin-top: 80px;">
+            <div id="typewriter"></div>
+        </div>
+    </div>
+
+    <script>
+        function checkUnlock() {
+            var pass = document.getElementById('passInput').value;
+            if (pass === "14") {
+                document.getElementById('lock-screen').style.display = 'none';
+                document.getElementById('main-content').style.display = 'flex';
+                
+                // تشغيل الموسيقى
+                var audio = document.getElementById("sisterMusic");
+                audio.play().catch(function(e) { console.log("Audio block: " + e); });
+            } else {
+                alert("الرمز غلط يا ست البنات 😉");
+            }
+        }
+
+        const msg = "أختي حبيبتي.. \n انتي السند اللي بتسند عليه لما الدنيا تضيق، \n انتي شريكة الذكريات، والضحكة الصافية اللي في البيت.. \n فخور جداً إنك أختي، وبتمنى لك دايماً كل السعادة.. \n ربنا يحفظك ليا يا أغلى الناس ❤️";
+        
+        let j = 0;
+        function showFinal() {
+            document.getElementById('main-content').style.display = 'none';
+            document.getElementById('final-step').style.display = 'flex';
+            typeWriter();
+        }
+        function typeWriter() {
+            if (j < msg.length) {
+                document.getElementById("typewriter").innerHTML += msg.charAt(j);
+                j++;
+                setTimeout(typeWriter, 100);
+            }
+        }
+    </script>
+</body>
+</html>
